@@ -32,6 +32,8 @@ else ()
   set (_ARCH "${CMAKE_SYSTEM_PROCESSOR}")
 endif ()
 
+message(STATUS " =====> CMAKE_SYSTEM_PROCESSOR: ${CMAKE_SYSTEM_PROCESSOR}" )
+
 set (MMK_MANGLING "none")
 
 if (MSVC)
@@ -40,6 +42,9 @@ if (MSVC)
   endif ()
 
   enable_language (ASM_MASM)
+  message(STATUS " =====> CMAKE_GENERATOR: ${CMAKE_GENERATOR}" )
+  message(STATUS " =====> _ARCH: ${_ARCH}" )
+
   if (CMAKE_GENERATOR MATCHES "^.*Win64$" OR _ARCH MATCHES "${AMD64}")
     set (MMK_ARCH "x86_64")
     set (MMK_ABI "win")
