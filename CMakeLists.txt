@@ -33,11 +33,14 @@ else ()
 endif ()
 
 message(STATUS " =====> CMAKE_SYSTEM_PROCESSOR: ${CMAKE_SYSTEM_PROCESSOR}" )
+message(STATUS "====> MSVC_TOOLSET_VERSION: ${MSVC_TOOLSET_VERSION}"
 
 set (MMK_MANGLING "none")
 
 if (MSVC)
-  if (NOT CMAKE_GENERATOR_PLATFORM)
+  # Visual Studio generator version earlier than 2017 (included) default to x86,
+  # after 2019 (included) it defaults to amd64
+  if (NOT CMAKE_GENERATOR_PLATFORM AND MSVC_TOOLSET_VERSION VERSION_LESS_EQUAL 141)
     set (_ARCH "x86")
   endif ()
 
